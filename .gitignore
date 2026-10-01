@@ -129,3 +129,7 @@ kernel/configs/android-*.cfg
 #Ignoring Android.bp link file
 #
 Android.bp
+
+#ignoring Build output file
+/out
+error.log
