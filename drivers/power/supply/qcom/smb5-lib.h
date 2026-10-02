@@ -177,7 +177,7 @@ enum print_reason {
 #define SDP_100_MA			100000
 #define SDP_CURRENT_UA			500000
 #define CDP_CURRENT_UA			1500000
-#define DCP_CURRENT_UA			2000000
+#define DCP_CURRENT_UA			2200000
 #define HVDCP_CURRENT_UA		3000000
 #define HVDCP_CLASS_B_CURRENT_UA		3100000
 #define HVDCP2_CURRENT_UA		1500000
@@ -229,7 +229,11 @@ enum print_reason {
 #define SOFT_JEITA_HYSTERESIS		5
 
 /* used for bq charge pump solution */
+#ifdef CONFIG_K6_CHARGE
+#define MAIN_CHARGER_ICL	500000
+#else
 #define MAIN_CHARGER_ICL	2000000
+#endif
 #define QC3_CHARGER_ICL		500000
 #define QC3P5_CHARGER_ICL	200000
 
