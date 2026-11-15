@@ -28,7 +28,9 @@
 #include <openssl/evp.h>
 #include <openssl/pem.h>
 #include <openssl/err.h>
+#if !defined(OPENSSL_NO_ENGINE) && OPENSSL_VERSION_MAJOR < 4
 #include <openssl/engine.h>
+#endif
 
 /*
  * OpenSSL 3.0 deprecates the OpenSSL's ENGINE API.
@@ -77,7 +79,7 @@ static void display_openssl_errors(int l)
 	}
 }
 
-#ifndef OPENSSL_NO_ENGINE
+#if !defined(OPENSSL_NO_ENGINE) && OPENSSL_VERSION_MAJOR < 4
 static void drain_openssl_errors(void)
 {
 	const char *file;
@@ -124,7 +126,7 @@ static EVP_PKEY *read_private_key(const char *private_key_name)
 	EVP_PKEY *private_key;
 	BIO *b;
 
-#ifndef OPENSSL_NO_ENGINE
+#if !defined(OPENSSL_NO_ENGINE) && OPENSSL_VERSION_MAJOR < 4
 	if (!strncmp(private_key_name, "pkcs11:", 7)) {
 		ENGINE *e;
 
